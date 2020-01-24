@@ -26,7 +26,11 @@ const create_item = () => {
   item.addEventListener('dragend', event => event.dataTransfer.clearData());
 
   let input = document.createElement('input');
+  item.appendChild(input);
+
   let save_btn = document.createElement('button');
+  save_btn.innerHTML = 'Save';
+
   save_btn.addEventListener('click', () => {
     error.innerHTML = '';
     if (input.value !== '') {
@@ -35,7 +39,7 @@ const create_item = () => {
       adding = false;
     } else {
       error.innerHTML = message;
-    };
+    }
   });
   item.appendChild(save_btn);
 
@@ -47,8 +51,7 @@ document.querySelectorAll('.drop').forEach(element => {
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
     event.target.appendChild(document.getElementById(id));
-    event.addEventListener('dragover', event => {
-      event.preventDefault();
-    });
+
+    event.addEventListener('dragover', event => event.preventDefault());
   });
 });
